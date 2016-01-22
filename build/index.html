@@ -4,6 +4,8 @@
 	<title>Utils</title>
 </head>
 <body>
+<div id="div2">2</div>
+<div id="div1">1</div>
 
 <script type="text/javascript" src="./Utils.js"></script>
 <script>
@@ -12,6 +14,9 @@
 	console.log(Utils.unique(arr));
 	var result = Utils.parseQueryString(window.location.href);
 	console.log(result.a);
+	var el = document.getElementById('div1');
+	var newEl = document.getElementById('div2');
+	Utils.insertAfter(newEl,el);
 </script>
 </body>
 </html>
