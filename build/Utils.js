@@ -1,1 +1,1 @@
-function Utils(){}Utils.prototype={init:function(){console.log("init")}};
+var Utils={init:function(){console.log("init")},unique:function(n){for(var i,u=[],o={},t=0;null!=(i=n[t]);t++)o[i]||(u.push(i),o[i]=!0);return u}};
