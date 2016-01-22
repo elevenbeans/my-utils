@@ -1,1 +1,1 @@
-var Utils={init:function(){console.log("init")},unique:function(n){for(var i,u=[],o={},t=0;null!=(i=n[t]);t++)o[i]||(u.push(i),o[i]=!0);return u}};
+var Utils={init:function(){console.log("init")},unique:function(n){for(var r,i=[],u={},e=0;null!=(r=n[e]);e++)u[r]||(i.push(r),u[r]=!0);return i},parseQueryString:function(n){var r=/^[^\?]+\?([\w\W]+)$/,i=/([^&=]+)=([\w\W]*?)(&|$|#)/g,u=r.exec(n),e={};if(u&&u[1])for(var t,o=u[1];null!=(t=i.exec(o));)e[t[1]]=t[2];return e}};
