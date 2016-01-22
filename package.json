@@ -1,0 +1,28 @@
+{
+  "name": "package.json",
+  "version": "1.0.0",
+  "description": "Usefull function",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/elevenBeans/MyUtils.git"
+  },
+  "author": "elevenBeans",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/elevenBeans/MyUtils/issues"
+  },
+  "homepage": "https://github.com/elevenBeans/MyUtils#readme",
+  "devDependencies": {
+    "gulp-clean": "*",
+    "gulp-cache": "^0.4.0",
+    "gulp-less": "^3.0.4",
+    "gulp-uglify":"*",
+    "gulp-autoprefixer":"*",
+    "gulp-minify-css":"*",
+    "gulp-if":"*"
+  }
+}
