@@ -41,9 +41,6 @@ dataUtils.prototype = {
 	}
 };
 
-console.log('zizhixing');
-//return Utils;
-
 /**
 
 **/
@@ -70,15 +67,17 @@ domUtils.prototype = {
 
 **/
 
-var BUFF = 200;
-var viewportHeight = window.screen.height;
-var DIFF = viewportHeight;
-var cbContent = {};
-var count = 1;
+function BottomLoader(){
+	this.BUFF = 400;
+	this.viewportHeight = window.screen.height;
+	this.DIFF = this.viewportHeight;
+	this.cbContent = {};
+	this.count = 1;
+	
+	this.init();
+}
 
-
-
-var BottomLoader = {
+BottomLoader.prototype = {
     init: function () { //对于detect检测做了间隔BUFF限制 并绑定scroll事件
         var self = this;
 
@@ -90,28 +89,29 @@ var BottomLoader = {
             timer = setTimeout(function () {
                 //添加onscroll事件处理
                 self.detect();
-            }, BUFF);
+            }, self.BUFF);
         }, false);
     },
     detect: function () {  //监测的逻辑
+    	var self = this;
         var docHeight = document.body.clientHeight;
         var scrollTop = document.body.scrollTop; //scroll distance
         console.log('detect');
         var elBottomPos = docHeight;
 
-        console.log(viewportHeight,scrollTop,cbContent.diff,elBottomPos)
+        console.log(self.viewportHeight,scrollTop,cbContent.diff,elBottomPos)
 
-        if ((viewportHeight + scrollTop + cbContent.diff >= elBottomPos )&&(scrollTop + cbContent.diff <= elBottomPos )){
-            cbContent.callback && cbContent.callback(count);
-            console.log('Loader '+count+" times");
-            count ++;
+        if ((self.viewportHeight + scrollTop + cbContent.diff >= elBottomPos )&&(scrollTop + cbContent.diff <= elBottomPos )){
+            cbContent.callback && cbContent.callback(self.count);
+            console.log('Loader '+self.count+" times");
+            self.count ++;
         }
     },
     addCallback: function (callback,config) {  //增加回调函数
         var self = this;
         cbContent = {
             //id: S.guid(),
-            diff: config.diff || DIFF,
+            diff: config.diff || self.DIFF,
             callback: callback,
             el: config.el
         };
@@ -119,15 +119,5 @@ var BottomLoader = {
             self.detect();
         }
     }
-    // removeCallback:function(id){//
-    //     for(var i=0;i<cbArr.length;i++){
-    //         var item = cbArr[i];
-    //         if(item.id==id){
-    //             cbArr.splice(i, 1);
-    //         }
-    //     }
-    // }
 };
-
-BottomLoader.init();
 

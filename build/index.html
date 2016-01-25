@@ -15,10 +15,14 @@
 <div id="div2">2</div>
 <div id="div1">1</div>
 <div>3</div>
+<div>4</div>
+<div>5</div>
 
 
 <script type="text/javascript" src="./Utils.js"></script>
 <script>
+
+	//dataUtils
 	var dateUt = new dataUtils();
 	dateUt.init();
 	var arr = [1,2,3,2,3,4,3,1,8,9];
@@ -26,26 +30,32 @@
 	var result = dateUt.parseQueryString(window.location.href);
 	console.log(result.b);
 
+	//domUtils
 	var el = document.getElementById('div1');
 	var newEl = document.getElementById('div2');
 
 	var domUt =new domUtils();
 	domUt.insertAfter(newEl,el);
 
+	//Bottomloader
 	console.log(document.body.clientHeight);
 	console.log(document.body.offsetHeight);
 
+	console.log(document.body.scrollTop);
 	console.log(document.body.scrollHeight);
 
 	console.log(window.screen.height);
 	console.log(window.screen.availHeight);
 
-	BottomLoader.addCallback(function (c){
+	var bl = new BottomLoader();
+
+	bl.addCallback(function (c){
 		console.log('load success');
 		var div = document.createElement("div");
 		div.innerHTML = 'new '+c;
 		document.body.appendChild(div);
-	},{diff:100});
+	},{diff:50});
+
 </script>
 </body>
 </html>
