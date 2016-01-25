@@ -2,21 +2,50 @@
 <html>
 <head>
 	<title>Utils</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 </head>
 <body>
+<style>
+	div{
+		background-color: #ccc;
+		height: 200px;
+		margin-bottom: 9px;
+	}
+</style>
 <div id="div2">2</div>
 <div id="div1">1</div>
+<div>3</div>
+
 
 <script type="text/javascript" src="./Utils.js"></script>
 <script>
-	Utils.init();
+	var dateUt = new dataUtils();
+	dateUt.init();
 	var arr = [1,2,3,2,3,4,3,1,8,9];
-	console.log(Utils.unique(arr));
-	var result = Utils.parseQueryString(window.location.href);
-	console.log(result.a);
+	console.log(dateUt.unique(arr));
+	var result = dateUt.parseQueryString(window.location.href);
+	console.log(result.b);
+
 	var el = document.getElementById('div1');
 	var newEl = document.getElementById('div2');
-	Utils.insertAfter(newEl,el);
+
+	var domUt =new domUtils();
+	domUt.insertAfter(newEl,el);
+
+	console.log(document.body.clientHeight);
+	console.log(document.body.offsetHeight);
+
+	console.log(document.body.scrollHeight);
+
+	console.log(window.screen.height);
+	console.log(window.screen.availHeight);
+
+	BottomLoader.addCallback(function (c){
+		console.log('load success');
+		var div = document.createElement("div");
+		div.innerHTML = 'new '+c;
+		document.body.appendChild(div);
+	},{diff:100});
 </script>
 </body>
 </html>

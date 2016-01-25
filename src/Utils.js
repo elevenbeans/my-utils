@@ -1,4 +1,14 @@
-var Utils = {
+
+/**
+
+**/
+
+function dataUtils (){
+};
+
+dataUtils.prototype = {
+	// body...
+
 	init : function(){
 		console.log('init');
 	},
@@ -13,6 +23,7 @@ var Utils = {
 	    }
 	    return result;
 	},
+	// prase || param String
     parseQueryString: function (url) {
 		var reg_url = /^[^\?]+\?([\w\W]+)$/,
 			reg_para = /([^&=]+)=([\w\W]*?)(&|$|#)/g,
@@ -27,7 +38,21 @@ var Utils = {
 		}
 		console.log(ret);
 		return ret;
-	},
+	}
+};
+
+console.log('zizhixing');
+//return Utils;
+
+/**
+
+**/
+
+function domUtils (){
+};
+
+domUtils.prototype = {
+	// insert tarDom after desDom
 	insertAfter : function (draggedElement, targetElement){
 		var parent = targetElement.parentNode;
 		if (parent.lastChild == targetElement) {
@@ -40,4 +65,69 @@ var Utils = {
 		}
 	}
 };
+
+/**
+
+**/
+
+var BUFF = 200;
+var viewportHeight = window.screen.height;
+var DIFF = viewportHeight;
+var cbContent = {};
+var count = 1;
+
+
+
+var BottomLoader = {
+    init: function () { //对于detect检测做了间隔BUFF限制 并绑定scroll事件
+        var self = this;
+
+        var timer = null;
+        window.addEventListener('scroll', function () {
+            if (typeof timer === 'number') {
+                clearTimeout(timer);
+            }
+            timer = setTimeout(function () {
+                //添加onscroll事件处理
+                self.detect();
+            }, BUFF);
+        }, false);
+    },
+    detect: function () {  //监测的逻辑
+        var docHeight = document.body.clientHeight;
+        var scrollTop = document.body.scrollTop; //scroll distance
+        console.log('detect');
+        var elBottomPos = docHeight;
+
+        console.log(viewportHeight,scrollTop,cbContent.diff,elBottomPos)
+
+        if ((viewportHeight + scrollTop + cbContent.diff >= elBottomPos )&&(scrollTop + cbContent.diff <= elBottomPos )){
+            cbContent.callback && cbContent.callback(count);
+            console.log('Loader '+count+" times");
+            count ++;
+        }
+    },
+    addCallback: function (callback,config) {  //增加回调函数
+        var self = this;
+        cbContent = {
+            //id: S.guid(),
+            diff: config.diff || DIFF,
+            callback: callback,
+            el: config.el
+        };
+        if(config.immediately){
+            self.detect();
+        }
+    }
+    // removeCallback:function(id){//
+    //     for(var i=0;i<cbArr.length;i++){
+    //         var item = cbArr[i];
+    //         if(item.id==id){
+    //             cbArr.splice(i, 1);
+    //         }
+    //     }
+    // }
+};
+
+BottomLoader.init();
 
