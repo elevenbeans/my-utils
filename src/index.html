@@ -49,12 +49,14 @@
 
 	var bl = new BottomLoader();
 
-	bl.addCallback(function (c){
-		console.log('load success');
+	bl.addCallback(function(c){
 		var div = document.createElement("div");
 		div.innerHTML = 'new '+c;
 		document.body.appendChild(div);
-	},{diff:50});
+	},{
+		diff:50,
+		immediately:true
+	});
 
 </script>
 </body>
