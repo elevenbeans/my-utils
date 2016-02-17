@@ -19,31 +19,44 @@ dataUtils.prototype = {
 	},
 	// unique Arry
 	unique : function(arr){
-	    var result = [], hash = {};
-	    for (var i = 0, elem; (elem = arr[i]) != null; i++) {
-	        if (!hash[elem]) {
-	            result.push(elem);
-	            hash[elem] = true;
-	        }
-	    }
-	    return result;
+    var result = [], hash = {};
+    for (var i = 0, elem; (elem = arr[i]) != null; i++) {
+      if (!hash[elem]) {
+        result.push(elem);
+        hash[elem] = true;
+      }
+    }
+    return result;
 	},
 	// prase || param String
-  parseQueryString: function (url) {
-	var reg_url = /^[^\?]+\?([\w\W]+)$/,
-		reg_para = /([^&=]+)=([\w\W]*?)(&|$|#)/g,
-		arr_url = reg_url.exec(url),
-		ret = {};
-	if (arr_url && arr_url[1]) {
-	   	var str_para = arr_url[1], result;
-		while ((result = reg_para.exec(str_para)) != null) {
-			console.log(result);
-			ret[result[1]] = result[2];
-		}
-	}
-	console.log(ret);
-	return ret;
-	}
+ //  parseQueryString: function (url) {
+	// 	var reg_url = /^[^\?]+\?([\w\W]+)$/,
+	// 		reg_para = /([^&=]+)=([\w\W]*?)(&|$|#)/g,
+	// 		arr_url = reg_url.exec(url),
+	// 		ret = {};
+	// 	if (arr_url && arr_url[1]) {
+	// 	   	var str_para = arr_url[1], result;
+	// 		while ((result = reg_para.exec(str_para)) != null) {
+	// 			console.log(result);
+	// 			ret[result[1]] = result[2];
+	// 		}
+	// 	}
+	// 	console.log(ret);
+	// 	return ret;
+	// },
+   parseQueryString: function(url) {  
+    var result = {};
+    var paramParts;
+    var params = (url.split('?')[1] || '').split('&');  
+    for(var param in params) {  
+      if (params.hasOwnProperty(param)) {  
+        paramParts = params[param].split('=');  
+        result[paramParts[0]] = decodeURIComponent(paramParts[1] || "");  
+      }  
+    }
+    console.log(result);
+    return result;  
+  }
 };
 
 /**
@@ -88,13 +101,13 @@ BottomLoader.prototype = {
 
     var timer = null;
     window.addEventListener('scroll', function () {
-        if (typeof timer === 'number') {
-            clearTimeout(timer);
-        }
-        timer = setTimeout(function () {
-            //添加onscroll事件处理
-            self.detect();
-        }, self.BUFF);
+      if (typeof timer === 'number') {
+          clearTimeout(timer);
+      }
+      timer = setTimeout(function () {
+          //添加onscroll事件处理
+          self.detect();
+      }, self.BUFF);
     }, false);
   },
   detect: function () {  //监测的逻辑
