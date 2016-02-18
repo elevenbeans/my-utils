@@ -93,7 +93,7 @@ BottomLoader.prototype = {
             self.detect();
         }, self.BUFF);
       }else{
-        self.throttle(400,self.detect);
+        self.throttle(200,self.detect);
       }
     }, false);
   },
