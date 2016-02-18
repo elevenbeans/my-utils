@@ -43,7 +43,7 @@ domUt.insertAfter(newEl,el);
 + addCallback
 
 ```js
-var bl = new BottomLoader();
+var bl = new BottomLoader(0); //0 throttle 1 debounce
 
 bl.addCallback(function(arg){
 	// code here
