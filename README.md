@@ -5,7 +5,7 @@
 `<script src="your/path/Utils.js"></script>
 `
 
-**Then, create an Utils object `var objName = new className()` and set the function below.**
+**Then, create an Utils object `var objName = new className()` and you use the functions below.**
 
 ## Function
 
