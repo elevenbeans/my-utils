@@ -54,6 +54,7 @@
 	bl.addCallback(function(c){
 		var div = document.createElement("div");
 		div.innerHTML = 'new '+c;
+		console.log('c:',c);
 		document.body.appendChild(div);
 	},{
 		diff:300,

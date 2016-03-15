@@ -31,15 +31,19 @@ dataUtils.prototype = {
   parseQueryString: function(url) {  
     var result = {};
     var paramParts;
-    var params = (url.split('?')[1] || '').split('&');  
+    var reg=/^([\u4E00-\u9FFF]|[a-zA-Z]|[0-9]|\s)+$/;
+    var params = (url.split('?')[1] || '').split('&');
+
     for(var param in params) {  
       if (params.hasOwnProperty(param)) {  
-        paramParts = params[param].split('=');  
-        result[paramParts[0]] = decodeURIComponent(paramParts[1] || "");  
+        paramParts = params[param].split('=');
+        var temp = decodeURIComponent(paramParts[1] || "");
+        if(temp && reg.test(temp))
+          result[paramParts[0]] = temp;
       }  
     }
     console.log(result);
-    return result;  
+    return result;
   }
 };
 
@@ -103,9 +107,6 @@ BottomLoader.prototype = {
     var scrollTop = document.body.scrollTop; //scroll distance
     //console.log('detect');
     var elBottomPos = docHeight;
-
-    //console.log(self.viewportHeight,scrollTop,cbContent.diff,elBottomPos)
-
     if ((self.viewportHeight + scrollTop + cbContent.diff >= elBottomPos )&&(scrollTop + cbContent.diff <= elBottomPos )){
       cbContent.callback && cbContent.callback(self.count);
       console.log('Loader '+self.count+" times");
