@@ -9,9 +9,9 @@ http.createServer( function (request, response) {
    var pathname = url.parse(request.url).pathname;
    
    // 输出请求的文件名
-   if(!pathname)
-   	pathname = 'index.html';
-   
+   if(!pathname || pathname == ''|| pathname == '/'){
+   	pathname = '/index.html';
+   }
    console.log("Request for " + pathname + " received.");
    
    // 从文件系统中读取请求的文件内容
