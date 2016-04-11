@@ -1,38 +1,80 @@
-var http = require('http');
-var fs = require('fs');
-var url = require('url');
+/**
+ * 静态文件服务器测试例子
+ * Date: 13-5-17
+ * Time: 上午8:38
+ * To change this template use File | Settings | File Templates.
+ */
+var port = 80;
+var http = require("http");
+var url = require("url");
+var fs = require("fs");
+var path = require("path");
+var mime = require("./mime").types;
+var config = require("./config");
+var zlib = require("zlib");
+//创建http服务端
+var server=http.createServer(function(request,response){
+    var obj= url.parse(request.url);
+    response.setHeader("Server","Node/V8");
+    console.log(obj);
+    var pathname=obj.pathname;
+    if(pathname.slice(-1)==="/"){
+        pathname=pathname+config.Welcome.file;   //默认取当前默认下的index.html
+    }
+    var realPath = path.join("assets", path.normalize(pathname.replace(/\.\./g, "")));
+    console.log(realPath) ;
+    var pathHandle=function(realPath){
+    //用fs.stat方法获取文件
+        fs.stat(realPath,function(err,stats){
+            if(err){
+                response.writeHead(404,"not found",{'Content-Type':'text/plain'});
+                response.write("the request "+realPath+" is not found");
+                response.end();
+            }else{
+                if(stats.isDirectory()){
+                }else{
+                    var ext = path.extname(realPath);
+                    ext = ext ? ext.slice(1) : 'unknown';
+                    var contentType = mime[ext] || "text/plain";
+                    response.setHeader("Content-Type", contentType);
 
+                    var lastModified = stats.mtime.toUTCString();
+                    var ifModifiedSince = "If-Modified-Since".toLowerCase();
+                    response.setHeader("Last-Modified", lastModified);
 
-// 创建服务器
-http.createServer( function (request, response) {  
-   // 解析请求，包括文件名
-   var pathname = url.parse(request.url).pathname;
-   
-   // 输出请求的文件名
-   if(!pathname || pathname == ''|| pathname == '/'){
-   	pathname = '/index.html';
-   }
-   console.log("Request for " + pathname + " received.");
-   
-   // 从文件系统中读取请求的文件内容
-   fs.readFile(pathname.substr(1), function (err, data) {
-      if (err) {
-         console.log(err);
-         // HTTP 状态码: 404 : NOT FOUND
-         // Content Type: text/plain
-         response.writeHead(404, {'Content-Type': 'text/html'});
-      }else{	         
-         // HTTP 状态码: 200 : OK
-         // Content Type: text/plain
-         response.writeHead(200, {'Content-Type': 'text/html'});	
-         
-         // 响应文件内容
-         response.write(data.toString());		
-      }
-      //  发送响应数据
-      response.end();
-   });   
-}).listen(80);
+                    if (ext.match(config.Expires.fileMatch)) {
+                        var expires = new Date();
+                        expires.setTime(expires.getTime() + config.Expires.maxAge * 1000);
+                        response.setHeader("Expires", expires.toUTCString());
+                        response.setHeader("Cache-Control", "max-age=" + config.Expires.maxAge);
+                    }
 
-// 控制台会输出以下信息
-console.log('Server running at http://127.0.0.1:80/');
+                    if (request.headers[ifModifiedSince] && lastModified == request.headers[ifModifiedSince]) {
+                        console.log("从浏览器cache里取")
+                        response.writeHead(304, "Not Modified");
+                        response.end();
+                    } else {
+                        var raw = fs.createReadStream(realPath);
+                        var acceptEncoding = request.headers['accept-encoding'] || "";
+                        var matched = ext.match(config.Compress.match);
+
+                        if (matched && acceptEncoding.match(/\bgzip\b/)) {
+                            response.writeHead(200, "Ok", {'Content-Encoding': 'gzip'});
+                            raw.pipe(zlib.createGzip()).pipe(response);
+                        } else if (matched && acceptEncoding.match(/\bdeflate\b/)) {
+                            response.writeHead(200, "Ok", {'Content-Encoding': 'deflate'});
+                            raw.pipe(zlib.createDeflate()).pipe(response);
+                        } else {
+                            response.writeHead(200, "Ok");
+                            raw.pipe(response);
+                        }
+                    }
+                }
+            }
+        });
+
+    }
+    pathHandle(realPath);
+});
+server.listen(port);
+console.log("http server run in port:"+port);
