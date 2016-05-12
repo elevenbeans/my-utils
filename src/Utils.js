@@ -28,6 +28,30 @@ dataUtils.prototype = {
     }
     return result;
 	},
+  isMatchUA: function(ua, ualist){
+      var list = (ualist || '').split('|');
+
+      var ret = false;
+
+      list.forEach(function (it) {
+          it = it.trim();
+
+          if (it && ua.indexOf(it) !== -1) {
+              ret = true
+          }
+      });
+
+      return ret;
+  },
+  parseBoolean: function(str){
+    var ret = false;
+
+    try{
+      ret = JSON.parse(str);
+    }catch(e){}
+
+      return ret;
+  },
   parseQueryString: function(url) {  
     var result = {};
     var paramParts;
