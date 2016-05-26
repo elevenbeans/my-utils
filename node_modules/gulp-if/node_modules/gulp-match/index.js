@@ -20,7 +20,7 @@ module.exports = function (file, condition, options) {
 		condition = new RegExp(newCond);
 	}
 
-	if (typeof condition === 'object' && typeof condition.test === 'function' && condition.hasOwnProperty('source')) {
+	if (typeof condition === 'object' && typeof condition.test === 'function' && Object.getPrototypeOf(condition).hasOwnProperty('source')) {
 		// FRAGILE: ASSUME: it's a regex
 		return condition.test(file.relative);
 	}

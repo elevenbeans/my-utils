@@ -29,19 +29,19 @@ dataUtils.prototype = {
     return result;
 	},
   isMatchUA: function(ua, ualist){
-      var list = (ualist || '').split('|');
+    var list = (ualist || '').split('|');
 
-      var ret = false;
+    var ret = false;
 
-      list.forEach(function (it) {
-          it = it.trim();
+    list.forEach(function (it) {
+        it = it.trim();
 
-          if (it && ua.indexOf(it) !== -1) {
-              ret = true
-          }
-      });
+        if (it && ua.indexOf(it) !== -1) {
+            ret = true
+        }
+    });
 
-      return ret;
+    return ret;
   },
   parseBoolean: function(str){
     var ret = false;
@@ -50,7 +50,7 @@ dataUtils.prototype = {
       ret = JSON.parse(str);
     }catch(e){}
 
-      return ret;
+    return ret;
   },
   parseQueryString: function(url) {  
     var result = {};
@@ -79,11 +79,31 @@ dataUtils.prototype = {
     var time = year + '' + month + day;
     return time;
   },
-  escapeHTML : function (text) {
-    var replacements= {&quot;&lt;&quot;: &quot;&lt;&quot;, &quot;&gt;&quot;: &quot;&gt;&quot;,&quot;&amp;&quot;: &quot;&amp;&quot;, &quot;\&quot;&quot;: &quot;&quot;&quot;};
-    return text.replace(/[&lt;&gt;&amp;&quot;]/g, function(character) {
-        return replacements[character];
-    });
+  html_encode:function (str)   
+  {   
+    var s = "";   
+    if (str.length == 0) return "";   
+    s = str.replace(/&/g, "&gt;");   
+    s = s.replace(/</g, "&lt;");   
+    s = s.replace(/>/g, "&gt;");   
+    s = s.replace(/ /g, "&nbsp;");   
+    s = s.replace(/\'/g, "&#39;");   
+    s = s.replace(/\"/g, "&quot;");   
+    s = s.replace(/\n/g, "<br>");   
+    return s;   
+  },
+  html_decode: function (str)   
+  {   
+    var s = "";   
+    if (str.length == 0) return "";   
+    s = str.replace(/&gt;/g, "&");   
+    s = s.replace(/&lt;/g, "<");   
+    s = s.replace(/&gt;/g, ">");   
+    s = s.replace(/&nbsp;/g, " ");   
+    s = s.replace(/&#39;/g, "\'");   
+    s = s.replace(/&quot;/g, "\"");   
+    s = s.replace(/<br>/g, "\n");   
+    return s;   
   }
 };
 
