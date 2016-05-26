@@ -68,6 +68,22 @@ dataUtils.prototype = {
     }
     console.log(result);
     return result;
+  },
+  getDefaultTime: function () {
+    var date = new Date();
+    var year = date.getFullYear();
+    var month = (date.getMonth() + 1);
+    month = (month < 9) ? '0' + month : month;
+    var day = date.getDate();
+    day = (day < 9) ? '0' + day : day;
+    var time = year + '' + month + day;
+    return time;
+  },
+  escapeHTML : function (text) {
+    var replacements= {&quot;&lt;&quot;: &quot;&lt;&quot;, &quot;&gt;&quot;: &quot;&gt;&quot;,&quot;&amp;&quot;: &quot;&amp;&quot;, &quot;\&quot;&quot;: &quot;&quot;&quot;};
+    return text.replace(/[&lt;&gt;&amp;&quot;]/g, function(character) {
+        return replacements[character];
+    });
   }
 };
 
