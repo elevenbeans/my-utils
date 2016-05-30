@@ -104,7 +104,26 @@ dataUtils.prototype = {
     s = s.replace(/&quot;/g, "\"");   
     s = s.replace(/<br>/g, "\n");   
     return s;   
+  },
+  getBase64Image: function(imgUrl,callback) {
+
+    var image = new Image();
+    image.crossOrigin = '';
+    image.src = imgUrl;
+
+    image.onload = function(){
+      var canvas = document.createElement("canvas");
+      canvas.width = image.width;
+      canvas.height = image.height;
+   
+      var ctx = canvas.getContext("2d");
+      ctx.drawImage(image, 0, 0, image.width, image.height);
+      var ext = image.src.substring(image.src.lastIndexOf(".")+1).toLowerCase();
+      var dataURL = canvas.toDataURL("image/"+ext);
+      callback && callback(dataURL);
+    }
   }
+
 };
 
 /**
