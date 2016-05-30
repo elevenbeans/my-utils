@@ -13,9 +13,9 @@
 + unique
 
 ```js
-var dateUt = new dataUtils();
+var dataUt = new dataUtils();
 var arr = [1,2,3,2,3,4,3,1,8,9];
-console.log(dateUt.unique(arr)); // [1, 2, 3, 4, 8, 9]
+console.log(dataUt.unique(arr)); // [1, 2, 3, 4, 8, 9]
 	
 ```
 
@@ -23,8 +23,19 @@ console.log(dateUt.unique(arr)); // [1, 2, 3, 4, 8, 9]
 
 ```js
 //github.com/elevenBeans?a=1&b=2&c=3&d=4
-var result = dateUt.parseQueryString(window.location.href); 
+var result = dataUt.parseQueryString(window.location.href); 
 console.log(result);// {a: "1", b: "2", c: "3", d: "4"}
+```
+
++ getBase64Image
+```js
+    var imgUrl = "https://gw.alicdn.com/tps/TB1l6OIKXXXXXcWXFXXXXXXXXXX-34-18.png";
+    dataUt.getBase64Image(
+        imgUrl,
+        function(res){
+            console.log('res:::',res)
+        }
+    );
 ```
 
 ### domUtils
