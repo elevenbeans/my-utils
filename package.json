@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/elevenBeans/MyUtils#readme",
   "devDependencies": {
+    "gulp":"*",
     "gulp-clean": "*",
     "gulp-cache": "^0.4.0",
     "gulp-less": "^3.0.4",

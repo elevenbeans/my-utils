@@ -52,19 +52,19 @@ dataUtils.prototype = {
 
     return ret;
   },
-  parseQueryString: function(url) {  
+  getURLParam: function(url) {  
     var result = {};
     var paramParts;
     var reg=/^([\u4E00-\u9FFF]|[a-zA-Z]|[0-9]|\s)+$/;
     var params = (url.split('?')[1] || '').split('&');
 
-    for(var param in params) {  
-      if (params.hasOwnProperty(param)) {  
+    for(var param in params) {
+      if (params.hasOwnProperty(param)) {
         paramParts = params[param].split('=');
         var temp = decodeURIComponent(paramParts[1] || "");
         if(temp && reg.test(temp))
           result[paramParts[0]] = temp;
-      }  
+      }
     }
     console.log(result);
     return result;
@@ -79,31 +79,31 @@ dataUtils.prototype = {
     var time = year + '' + month + day;
     return time;
   },
-  html_encode:function (str)   
-  {   
-    var s = "";   
-    if (str.length == 0) return "";   
-    s = str.replace(/&/g, "&gt;");   
-    s = s.replace(/</g, "&lt;");   
-    s = s.replace(/>/g, "&gt;");   
-    s = s.replace(/ /g, "&nbsp;");   
-    s = s.replace(/\'/g, "&#39;");   
-    s = s.replace(/\"/g, "&quot;");   
-    s = s.replace(/\n/g, "<br>");   
-    return s;   
+  html_encode:function (str)
+  {
+    var s = "";
+    if (str.length == 0) return "";
+    s = str.replace(/&/g, "&gt;");
+    s = s.replace(/</g, "&lt;");
+    s = s.replace(/>/g, "&gt;");
+    s = s.replace(/ /g, "&nbsp;");
+    s = s.replace(/\'/g, "&#39;");
+    s = s.replace(/\"/g, "&quot;");
+    s = s.replace(/\n/g, "<br>");
+    return s;
   },
-  html_decode: function (str)   
-  {   
-    var s = "";   
-    if (str.length == 0) return "";   
-    s = str.replace(/&gt;/g, "&");   
-    s = s.replace(/&lt;/g, "<");   
-    s = s.replace(/&gt;/g, ">");   
-    s = s.replace(/&nbsp;/g, " ");   
-    s = s.replace(/&#39;/g, "\'");   
-    s = s.replace(/&quot;/g, "\"");   
-    s = s.replace(/<br>/g, "\n");   
-    return s;   
+  html_decode: function (str)
+  {
+    var s = "";
+    if (str.length == 0) return "";
+    s = str.replace(/&gt;/g, "&");
+    s = s.replace(/&lt;/g, "<");
+    s = s.replace(/&gt;/g, ">");
+    s = s.replace(/&nbsp;/g, " ");
+    s = s.replace(/&#39;/g, "\'");
+    s = s.replace(/&quot;/g, "\"");
+    s = s.replace(/<br>/g, "\n");
+    return s;
   },
   getBase64Image: function(imgUrl,callback) {
 
@@ -115,7 +115,7 @@ dataUtils.prototype = {
       var canvas = document.createElement("canvas");
       canvas.width = image.width;
       canvas.height = image.height;
-   
+
       var ctx = canvas.getContext("2d");
       ctx.drawImage(image, 0, 0, image.width, image.height);
       var ext = image.src.substring(image.src.lastIndexOf(".")+1).toLowerCase();
@@ -212,4 +212,3 @@ BottomLoader.prototype = {
     };
   }
 };
-
