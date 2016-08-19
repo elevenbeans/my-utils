@@ -29,13 +29,13 @@ console.log(result);// {a: "1", b: "2", c: "3", d: "4"}
 
 + getBase64Image
 ```js
-    var imgUrl = "https://gw.alicdn.com/tps/TB1l6OIKXXXXXcWXFXXXXXXXXXX-34-18.png";
-    dataUt.getBase64Image(
-        imgUrl,
-        function(res){
-            console.log('res:::',res)
-        }
-    );
+var imgUrl = "https://gw.alicdn.com/tps/TB1l6OIKXXXXXcWXFXXXXXXXXXX-34-18.png";
+dataUt.getBase64Image(
+  imgUrl,
+  function(res){
+    console.log('res:::',res)
+  }
+);
 ```
 
 ### domUtils
