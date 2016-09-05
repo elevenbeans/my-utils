@@ -52,7 +52,7 @@ dataUtils.prototype = {
 
     return ret;
   },
-  getURLParam: function(url) {  
+  getURLParam: function(url) {
     var result = {};
     var paramParts;
     var reg=/^([\u4E00-\u9FFF]|[a-zA-Z]|[0-9]|\s)+$/;

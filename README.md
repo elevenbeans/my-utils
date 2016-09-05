@@ -16,7 +16,6 @@
 var dataUt = new dataUtils();
 var arr = [1,2,3,2,3,4,3,1,8,9];
 console.log(dataUt.unique(arr)); // [1, 2, 3, 4, 8, 9]
-	
 ```
 
 + parseQueryString 
@@ -28,6 +27,7 @@ console.log(result);// {a: "1", b: "2", c: "3", d: "4"}
 ```
 
 + getBase64Image
+
 ```js
 var imgUrl = "https://gw.alicdn.com/tps/TB1l6OIKXXXXXcWXFXXXXXXXXXX-34-18.png";
 dataUt.getBase64Image(
