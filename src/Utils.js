@@ -12,6 +12,7 @@ function dataUtils (){
 };
 
 dataUtils.prototype = {
+
 	// body...
 	init : function(){
 		console.log('init');
