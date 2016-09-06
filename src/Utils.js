@@ -29,8 +29,8 @@ dataUtils.prototype = {
     return result;
 	},
   isMatchUA: function(ua, ualist){
-    var list = (ualist || '').split('|');
 
+    var list = (ualist || '').split('|');
     var ret = false;
 
     list.forEach(function (it) {
@@ -66,7 +66,7 @@ dataUtils.prototype = {
           result[paramParts[0]] = temp;
       }
     }
-    console.log(result);
+    //console.log(result);
     return result;
   },
   getDefaultTime: function () {
