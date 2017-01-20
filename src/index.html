@@ -22,13 +22,14 @@
 <div>8</div>
 
 <script type="text/javascript" src="./Utils.js"></script>
+
 <script>
 
 	//dataUtils
 	var dataUt = new dataUtils();
 	var arr = [1,2,3,2,3,4,3,1,8,9];
 	console.log(dataUt.unique(arr));
-	var result = dataUt.parseQueryString(window.location.href);
+	var result = dataUt.getURLParam(window.location.href);
 	console.log(result);
 
 	var imgUrl = "https://gw.alicdn.com/tps/TB1l6OIKXXXXXcWXFXXXXXXXXXX-34-18.png";
@@ -57,7 +58,7 @@
 	console.log(window.screen.height);
 	console.log(window.screen.availHeight);
 
-	var bl = new BottomLoader();
+	var bl = new BottomLoader(1);
 
 	bl.addCallback(function(c){
 		var div = document.createElement("div");

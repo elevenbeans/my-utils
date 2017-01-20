@@ -55,7 +55,7 @@ dataUtils.prototype = {
   getURLParam: function(url) {
     var result = {};
     var paramParts;
-    var reg=/^([\u4E00-\u9FFF]|[a-zA-Z]|[0-9]|\s)+$/;
+    var reg=/^([a-zA-Z]|[0-9]|\s)+$/;
     var params = (url.split('?')[1] || '').split('&');
 
     for(var param in params) {
@@ -206,7 +206,7 @@ BottomLoader.prototype = {
     var self = this;
     var curr = +new Date();
     if (curr - self.last > delay){
-      console.log('in');
+      // console.log('in');
       action.apply(this, arguments);
       self.last = curr ;
     };
