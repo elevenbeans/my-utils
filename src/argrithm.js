@@ -46,9 +46,11 @@
 		},
 		shellSort: function(arr) {
 			var len = arr.length;
-	    for (var fraction = Math.floor(len / 2); fraction > 0; fraction = Math.floor(fraction / 2)) {
+	    for (var fraction = Math.floor(len / 2); fraction > 0; 
+	    		fraction = Math.floor(fraction / 2)) {
 	      for (var i = fraction; i < len; i++) {
-	        for (var j = i - fraction; j >= 0 && arr[j] > arr[fraction + j]; j -= fraction) {
+	        for (var j = i - fraction; j >= 0 && 
+	        		arr[j] > arr[fraction + j]; j -= fraction) {
 	          var temp = arr[j];	            
 	          arr[j] = arr[fraction + j];
             arr[fraction + j] = temp;
@@ -56,6 +58,23 @@
 	      }
 	    }
 		  return arr;
+		},
+		selectionSort: function(arr){
+			var minIndex, temp;
+			for(var n = 0; n < arr.length - 1; n++){
+				minIndex = n;
+				for(var i = n + 1; i < arr.length; i++ ){
+				  if(arr[i] < arr[minIndex]){
+					  minIndex = i;
+				  }
+			  };
+				//console.log(minIndex);
+
+				temp = arr[minIndex];
+				arr[minIndex] = arr[n];
+				arr[n] = temp;
+			}
+			return arr;
 		},
 		binarySearch: function(){
 
