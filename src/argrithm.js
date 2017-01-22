@@ -68,7 +68,6 @@
 					  minIndex = i;
 				  }
 			  };
-				//console.log(minIndex);
 
 				temp = arr[minIndex];
 				arr[minIndex] = arr[n];
@@ -76,8 +75,21 @@
 			}
 			return arr;
 		},
-		binarySearch: function(){
-
+		binarySearch(data, dest){
+		  var h = data.length - 1,
+		      l = 0;
+		  while(l <= h){
+		    var m = Math.floor((h + l) / 2);
+	      if(data[m] == dest){
+          return m;
+        }
+	      if(dest > data[m]){
+          l = m + 1;
+        }else{
+          h = m - 1;
+        }
+	    }   
+		  return false;
 		}
 	}
 
