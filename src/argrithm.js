@@ -118,9 +118,30 @@
 		  }  
 
 		  return rNumber;  
+		},
+		uniteUnique() {
+		  var arr = [];
+		  //unite中参数总数目（即数组个数）
+		  var len = arguments.length;
+		  //控制遍历哪个数组（arguments[i],i可取0~len-1）
+		  var i = 0;  
+		  while(i < len){
+		    //控制遍历的数组arguments[i]中元素下标
+		    var j = 0;
+		    while(j < arguments[i].length){
+		      //如果 arr 中没有索引为 i 的数组参数中的索引为 j 的元素
+		      //将其 push 到 arr 中
+		      if(arr.indexOf(arguments[i][j]) == -1)
+		         arr.push(arguments[i][j]);
+		      j++;
+		    }
+		    i++;   
+		  }
+		  return arr;
 		}
 
-	}
+	},
+
 
 	window.Argrithm = argrithm;
 
