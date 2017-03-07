@@ -138,10 +138,16 @@
 		    i++;   
 		  }
 		  return arr;
+		},
+		flatten(arr) {
+			var self = this;
+			arr = arr.reduce(function(acc, val){
+				return acc.concat(Array.isArray(val) ? self.flatten(val) : val)
+			},[])
+			return arr;
 		}
 
-	},
-
+	};
 
 	window.Argrithm = argrithm;
 
