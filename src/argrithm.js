@@ -201,6 +201,11 @@
 			  }
 			}
      
+		},
+		telephoneCheck(str) {
+  		// Good luck!
+  		var reg = /^1? ?(\d{3}|\(\d{3}\))[ -]?\d{3}[ -]?\d{4}$/;
+  		return reg.test(str);
 		}
 	};
 
