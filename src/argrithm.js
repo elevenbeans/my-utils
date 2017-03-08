@@ -142,6 +142,7 @@
 		flatten(arr) {
 			var self = this;
 			arr = arr.reduce(function(acc, val){
+				console.log(acc);
 				return acc.concat(Array.isArray(val) ? self.flatten(val) : val)
 			},[])
 			return arr;
@@ -184,6 +185,22 @@
     		}
   		};
   		return true;
+		},
+		smallestCommons(a, b){
+			var minNum = Math.min(a,b),
+					maxNum = Math.max(a,b),
+					i = 1, vper = 0;
+			if(a === 0 || b === 0){
+			  return maxNum;
+			}
+			for(;i <= maxNum;i++){
+			  vper = minNum * i;
+			  if(vper % maxNum === 0){
+			    return vper;
+			    break;
+			  }
+			}
+     
 		}
 	};
 
