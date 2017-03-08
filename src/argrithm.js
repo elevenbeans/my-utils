@@ -156,8 +156,35 @@
 		        .toLowerCase();
 		  
 		  return str;
-		}
+		},
+		fibonacci(length){
+			var arr = [1,1];
+			for(var i = 0; i < length; i++ ){
+				arr.push(arr[i]+arr[i+1]);
+			}
+			return arr;
+		},
+		sumFibs(max){
+			var arr = [1,1];
+			var sum = 0;
 
+			for(var i = 0; arr[arr.length-1] <= max; i++ ){
+				sum = arr.reduce(function(a, b){
+					return a + b;
+				});
+				arr.push(arr[i]+arr[i+1]);
+			}
+			arr.pop();
+			return sum;
+		},
+		isPrimeNum(num){
+  		for (var i = 2; i < num; i++) {
+    		if (num % i == 0){
+      	return false;
+    		}
+  		};
+  		return true;
+		}
 	};
 
 	window.Argrithm = argrithm;
