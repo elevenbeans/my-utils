@@ -139,7 +139,7 @@
 		  }
 		  return arr;
 		},
-		flatten(arr) {
+		flatten(arr) { //数组扁平化
 			var self = this;
 			arr = arr.reduce(function(acc, val){
 				console.log(acc);
@@ -147,9 +147,8 @@
 			},[])
 			return arr;
 		},
-		spinalCase(str) {
+		spinalCase(str) { //
 		  // "It's such a fine line between stupid, and clever."
-		  // --David St. Hubbins
 		  str = str.replace(/_/g," ")
 		        .replace(/([A-Z])/g," $1")
 		        .replace(/^\s/,"")
@@ -158,14 +157,14 @@
 		  
 		  return str;
 		},
-		fibonacci(length){
+		fibonacci(length){ // fibonacci 数列
 			var arr = [1,1];
 			for(var i = 0; i < length; i++ ){
 				arr.push(arr[i]+arr[i+1]);
 			}
 			return arr;
 		},
-		sumFibs(max){
+		sumFibs(max){ // fib 累加
 			var arr = [1,1];
 			var sum = 0;
 
@@ -178,7 +177,7 @@
 			arr.pop();
 			return sum;
 		},
-		isPrimeNum(num){
+		isPrimeNum(num){ // 质数
   		for (var i = 2; i < num; i++) {
     		if (num % i == 0){
       	return false;
@@ -186,7 +185,7 @@
   		};
   		return true;
 		},
-		smallestCommons(a, b){
+		smallestCommons(a, b){ // 最小公倍数
 			var minNum = Math.min(a,b),
 					maxNum = Math.max(a,b),
 					i = 1, vper = 0;
@@ -202,12 +201,12 @@
 			}
      
 		},
-		telephoneCheck(str) { // America
+		telephoneCheck(str) { // America tele
   		// Good luck!
   		var reg = /^1? ?(\d{3}|\(\d{3}\))[ -]?\d{3}[ -]?\d{4}$/;
   		return reg.test(str);
 		},
-		sym() {
+		sym() { // Symmetric Difference
       var argArr = [];
       for(var key in arguments){
         arguments[key] = arguments[key].sort();
