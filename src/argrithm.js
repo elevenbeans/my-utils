@@ -231,7 +231,27 @@
       }
 
       return argArr;
-    }
+    }，    
+    charsMap(o){ // 全排列
+      o = (o+"").replace(/(\w)(?=\w*\1)/g,"").replace(/\s+/g,""); //去除重复字符以及空白字符  
+      switch(o.length){  
+        case 0:   
+        case 1: return [o];  
+        default:   
+          var p = /^(\S+?)(\S)$/.exec(o), //使用正则将字符串分割为n-1长度字符串，以及最后一个字符串。  
+              _r = charsMap(p[1]),   
+              l = p[2],   
+              r = [];
+          for (var i = 0; i < _r.length; i++) {  
+              var t = _r[i];  
+              for (var j = 0, len = t.length; j <= len; j++) {  
+                r.push( t.replace( new RegExp("^(\\S{"+j+"})(\\S{"+(len-j)+"})$"), "$1"+l+"$2" ) );   
+                //字符插入位置从开头前到结尾后,正则的作用相当于Array.splice(j,0,l); 在下标j的位置插入一个字符l  
+              }  
+          }  
+          return r;  
+      }  
+    } 
 	};
 
 	window.Argrithm = argrithm;
