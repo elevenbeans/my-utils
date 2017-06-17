@@ -100,12 +100,10 @@
 				return num * this.factorial(num-1);
 			}
 		},
-
 		convertToRoman(aNumber) {
 		  if(aNumber < 1 || aNumber > 3999){
 		     return false;  
 		  }
-		   
 		  var aArray = [1000,900,500,400,100,90,50,40,10,9,5,4,1];  
 		  var rArray = ["M","CM","D","CD","C","XC","L","XL","X","IX","V","IV","I"];  
 		  var rNumber = "";  

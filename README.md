@@ -1,5 +1,5 @@
 # Usefull Utils
-##Usage
+## Usage
 **Firstly, add the code below to your HTML page (better in tag`<header>`):**
 
 `<script src="your/path/Utils.js"></script>
@@ -18,11 +18,11 @@ var arr = [1,2,3,2,3,4,3,1,8,9];
 console.log(dataUt.unique(arr)); // [1, 2, 3, 4, 8, 9]
 ```
 
-+ parseQueryString 
++ parseQueryString
 
 ```js
 //github.com/elevenBeans?a=1&b=2&c=3&d=4
-var result = dataUt.parseQueryString(window.location.href); 
+var result = dataUt.parseQueryString(window.location.href);
 console.log(result);// {a: "1", b: "2", c: "3", d: "4"}
 ```
 
