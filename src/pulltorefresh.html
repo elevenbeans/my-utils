@@ -9,12 +9,21 @@
 </head>
 <body>
 <style>
+	html, body{
+		margin: 0;
+		padding: 0;
+	}
 	.item{
 		background-color: #ccc;
 		height: 91px;
 		margin-bottom: 9px;
 	}
+	#main{
+		position: relative;
+	}
 	#ptr{
+		position: absolute;
+		width: 100%;
 		height: 90px;
 		background-color: blue;
 		font-size: 20px;
@@ -23,10 +32,10 @@
 	}
 </style>
 <script type="text/javascript" src="./pulltorefresh.js"></script>
-<div id = "main">
 	<div id = "ptr">
 		<span class= "ptr-instructions-text"></span>
 	</div>
+<div id = "main">
 	<div class = "item">1</div>
 	<div class = "item">2</div>
 	<div class = "item">3</div>

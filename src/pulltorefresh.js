@@ -26,7 +26,8 @@
 					pullElement(_element, _pullLengh, cfg);
 				}
 				if(document.body.scrollTop > 0){
-					window.scrollTo(0, 0);
+					// window.scrollTo(0, 0);
+					_element.style['transform'] = 'translate(0, 0px)';
 				}
 			});
 			document.addEventListener('touchend', function(event){
