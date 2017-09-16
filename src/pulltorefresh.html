@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Utils</title>
+	<meta
+		name="viewport"
+		content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+	>
+</head>
+<body>
+<style>
+	.item{
+		background-color: #ccc;
+		height: 91px;
+		margin-bottom: 9px;
+	}
+	#ptr{
+		height: 90px;
+		background-color: blue;
+		font-size: 20px;
+		text-align: center;
+		overflow: hidden;
+	}
+</style>
+<script type="text/javascript" src="./pulltorefresh.js"></script>
+<div id = "main">
+	<div id = "ptr">
+		<span class= "ptr-instructions-text"></span>
+	</div>
+	<div class = "item">1</div>
+	<div class = "item">2</div>
+	<div class = "item">3</div>
+	<div class = "item">4</div>
+	<div class = "item">5</div>
+	<div class = "item">6</div>
+	<div class = "item">7</div>
+	<div class = "item">8</div>
+	<div class = "item">9</div>
+	<div class = "item">10</div>
+	<div class = "item">11</div>
+	<div class = "item">12</div>
+	<div class = "item">13</div>
+</div>
+
+<script>
+	pullToRefresh.init({
+		ptrElement: '#ptr',
+		instructionsPullToRefresh: 'pull to refresh',
+		instructionsReleaseToRefresh: 'Release to refresh',
+		instructionsRefreshing: 'refreshing',
+		targetElement: '#main',
+		onPull: function(){
+			console.log('onPull fired');
+		}
+	});
+</script>
+</body>
+</html>
