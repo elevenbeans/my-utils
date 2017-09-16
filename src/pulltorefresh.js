@@ -9,10 +9,6 @@
 			_element = document.querySelector(cfg.targetElement || 'body');
 			_ptrEle = document.querySelector(cfg.ptrElement);
 			_ptrEle.innerText = cfg.instructionsPullToRefresh;
-
-			if(_ptrEle){
-				// _ptrEle.style.display = 'none';
-			}
 			document.addEventListener('touchstart', function(event){
 				_startLength = event.touches[0].pageY;
 				_element.removeAttribute('style');
