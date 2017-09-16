@@ -18,24 +18,22 @@
 		height: 91px;
 		margin-bottom: 9px;
 	}
-	#main{
-		position: relative;
-	}
-	#ptr{
-		position: absolute;
+	#ptr-instructions{
 		width: 100%;
 		height: 90px;
 		background-color: blue;
 		font-size: 20px;
+		color: #fff;
 		text-align: center;
 		overflow: hidden;
 	}
 </style>
 <script type="text/javascript" src="./pulltorefresh.js"></script>
-<div id = "ptr">
+<div style="height: 100px">
+</div>
+<div id = "ptr-instructions">
 	<!--your loading icon here-->
 	<span class= "ptr-instructions-text"></span>
-	}
 </div>
 <div id = "main">
 	<div class = "item">1</div>
@@ -55,12 +53,16 @@
 
 <script>
 	pullToRefresh.init({
-		ptrElement: '#ptr',
-		instructionsPullToRefresh: 'pull to refresh',
-		instructionsReleaseToRefresh: 'Release to refresh',
-		instructionsRefreshing: 'refreshing',
-		targetElement: '#main',
-		onPull: function(){
+		// required
+		ptrElement: '#ptr-instructions', // 'pull to refresh' intructions element
+		ptrTextElement: '.ptr-instructions-text', // intructions' text element
+		targetElement: '#main', // target element that will be refresh
+		// optional
+		instructionsPullToRefresh: 'pull to refresh', // text
+		instructionsReleaseToRefresh: 'Release to refresh', //text
+		instructionsRefreshing: 'refreshing', // text
+		threshold: 60, // minimum distance required to trigger the refresh.
+		onPull: function(){ // callback fn
 			console.log('onPull fired');
 		}
 	});

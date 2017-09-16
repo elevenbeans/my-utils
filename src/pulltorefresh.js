@@ -1,52 +1,63 @@
 
 (function(window){
+	const _defaults = {
+		instructionsPullToRefresh: 'pull to refresh', // text
+		instructionsReleaseToRefresh: 'Release to refresh', //text
+		instructionsRefreshing: 'refreshing', // text
+		threshold: 60, // minimum distance required to trigger the refresh.
+	  onPull: () => location.reload()
+	};
 	let	_pullLengh = 0;
 	let	_startLength = 0;
 	let _ptrEle = '';
+	let _ptrTextEle = '';
 	let _element = '';
 	let pullToRefresh = {
 		init: function(cfg){
-			_element = document.querySelector(cfg.targetElement || 'body');
+	    Object.keys(_defaults).forEach((key) => {
+	      cfg[key] = cfg[key] || _defaults[key];
+	    });
+			_element = document.querySelector(cfg.targetElement);
 			_ptrEle = document.querySelector(cfg.ptrElement);
-			_ptrEle.innerText = cfg.instructionsPullToRefresh;
+			_ptrTextEle = document.querySelector(cfg.ptrTextElement);
+			
+			// init style
+			_element.style.position = 'relative';
+			_ptrEle.style.position = 'absolute';
+			_ptrTextEle.innerText = cfg.instructionsPullToRefresh;
+			
+			// blind event
 			_element.addEventListener('touchstart', function(event){
 				_startLength = event.touches[0].pageY;
-				_element.removeAttribute('style');
+				// _element.removeAttribute('style');
+				_element.style['transition'] = 'transform 0s';
 				// 'pull to refresh'
-				_ptrEle.innerText = cfg.instructionsPullToRefresh;
+				_ptrTextEle.innerText = cfg.instructionsPullToRefresh;
 			});
-			_element.addEventListener('touchmove', function(event){
-				if(_element.scrollTop === 0){
+			_element.addEventListener('touchmove', function(event){					
 					_pullLengh = event.touches[0].pageY - _startLength;
-					// 'pull to refresh'
 					pullElement(_element, _pullLengh, cfg);
-				}
-				if(_element.scrollTop > 0){
-					_element.style['transform'] = 'translate(0, 0px)';
-				}
 			});
 			_element.addEventListener('touchend', function(event){
 				if(_element.scrollTop === 0){
-					if(_pullLengh > 60 ){
+					if(_pullLengh > cfg.threshold){
 						// 'refreshing'
-						_ptrEle.innerText = cfg.instructionsRefreshing;
+						_ptrTextEle.innerText = cfg.instructionsRefreshing;
 						cfg.onPull();
-						_element.style['transition'] = 'transform 0.4s ease';
-						_element.style['transform'] = 'translate(0, 0px)';
-					} else if(_pullLengh < 60){
-						_element.style['transition'] = 'transform 0.4s ease';
-						_element.style['transform'] = 'translate(0, 0px)';
-					}
+					} 
+					_element.style['transition'] = 'transform 0.6s ease';
+					_element.style['transform'] = 'translate(0, 0px)';
 				}
 			});
 		}
 	}
+
 	let pullElement = function(element, length, cfg){
-		if(length < 100){
+		if(length < _ptrEle.offsetHeight){
 			element.style['transform'] = 'translate(0, ' + length + 'px)';
-			if(length > 60){
+			if(length > cfg.threshold){
 				// 'release to fresh'
-				_ptrEle.innerText = cfg.instructionsReleaseToRefresh;
+				_ptrTextEle.innerText = cfg.instructionsReleaseToRefresh;
 			}
 		}
 	};
