@@ -29,8 +29,7 @@
 	}
 </style>
 <script type="text/javascript" src="./pulltorefresh.js"></script>
-<div style="height: 100px">
-</div>
+
 <div id = "ptr-instructions">
 	<!--your loading icon here-->
 	<span class= "ptr-instructions-text"></span>
@@ -63,7 +62,7 @@
 		instructionsRefreshing: 'refreshing', // text
 		threshold: 60, // minimum distance required to trigger the refresh.
 		onPull: function(){ // callback fn
-			console.log('onPull fired');
+			alert('onPull fired');
 		}
 	});
 </script>
