@@ -40,12 +40,14 @@
 			});
 			_element.addEventListener('touchmove', function(event){					
 					_pullLengh = event.touches[0].pageY - _startLength;
-					if(_pullLengh > 10){
+					if(_pullLengh > 10 && document.body.scrollTop === 0){
 						pullElement(_element, _pullLengh, cfg);						
 					}
 			});
 			_element.addEventListener('touchend', function(event){
-				if(_element.scrollTop === 0){
+				console.log(_element.scrollTop);
+				console.log(document.body.scrollTop);
+				if(_element.scrollTop === 0 && document.body.scrollTop === 0){
 					if(_pullLengh > cfg.threshold){
 						// 'refreshing'
 						_ptrTextEle.innerText = cfg.instructionsRefreshing;
