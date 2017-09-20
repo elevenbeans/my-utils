@@ -36,13 +36,12 @@
 			});
 			_element.addEventListener('touchmove', function(event){					
 					_pullLengh = event.touches[0].pageY - _startLength;
-					// console.log(document.body.scrollTop);
-					if(document.body.scrollTop === 0){
+					if(_pullLengh > 10){
 						pullElement(_element, _pullLengh, cfg);						
 					}
 			});
 			_element.addEventListener('touchend', function(event){
-				if(document.body.scrollTop === 0){
+				if(_element.scrollTop === 0){
 					if(_pullLengh > cfg.threshold){
 						// 'refreshing'
 						_ptrTextEle.innerText = cfg.instructionsRefreshing;
