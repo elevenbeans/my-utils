@@ -12,11 +12,6 @@
 	let _ptrEle = '';
 	let _ptrTextEle = '';
 	let _element = '';
-	function preventDefault(ev) {
-	  ev.preventDefault()
-	}
-	document.addEventListener('touchmove', preventDefault, false) // 阻止ios自带拖动效果
-
 	let pullToRefresh = {
 		init: function(cfg){
 	    Object.keys(_defaults).forEach((key) => {
@@ -41,16 +36,12 @@
 			});
 			_element.addEventListener('touchmove', function(event){					
 					_pullLengh = event.touches[0].pageY - _startLength;
-					if(_pullLengh > 10 && document.body.scrollTop === 0){ // 下拉刷新
+					if(_pullLengh > 10){
 						pullElement(_element, _pullLengh, cfg);						
-					} else { // 正常下拉滚动
-							document.removeEventListener('touchmove', preventDefault, false) // 阻止ios自带拖动效果
 					}
 			});
 			_element.addEventListener('touchend', function(event){
-				console.log(_element.scrollTop);
-				console.log(document.body.scrollTop);
-				if(_element.scrollTop === 0 && document.body.scrollTop === 0){
+				if(_element.scrollTop === 0){
 					if(_pullLengh > cfg.threshold){
 						// 'refreshing'
 						_ptrTextEle.innerText = cfg.instructionsRefreshing;
