@@ -15,6 +15,8 @@
 	function preventDefault(ev) {
 	  ev.preventDefault()
 	}
+	document.addEventListener('touchmove', preventDefault, false) // 阻止ios自带拖动效果
+
 	let pullToRefresh = {
 		init: function(cfg){
 	    Object.keys(_defaults).forEach((key) => {
@@ -42,7 +44,7 @@
 					if(_pullLengh > 10 && document.body.scrollTop === 0){ // 下拉刷新
 						pullElement(_element, _pullLengh, cfg);						
 					} else { // 正常下拉滚动
-							document.removeEventListener('touchmove', preventDefault, false)
+							document.removeEventListener('touchmove', preventDefault, false) // 阻止ios自带拖动效果
 					}
 			});
 			_element.addEventListener('touchend', function(event){
