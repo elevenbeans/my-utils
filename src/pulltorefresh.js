@@ -36,11 +36,13 @@
 			});
 			_element.addEventListener('touchmove', function(event){					
 					_pullLengh = event.touches[0].pageY - _startLength;
-					if(_pullLengh > 10){
+					// console.log(_element.scrollTop)
+					if(_pullLengh > 10 && _element.scrollTop === 0){
 						pullElement(_element, _pullLengh, cfg);						
 					}
 			});
 			_element.addEventListener('touchend', function(event){
+				//console.log(_element.scrollTop)
 				if(_element.scrollTop === 0){
 					if(_pullLengh > cfg.threshold){
 						// 'refreshing'
