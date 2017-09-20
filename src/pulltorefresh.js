@@ -37,7 +37,7 @@
 			_element.addEventListener('touchmove', function(event){					
 					_pullLengh = event.touches[0].pageY - _startLength;
 					// console.log(document.body.scrollTop)
-					if(_pullLengh > 0 && document.body.scrollTop === 0){
+					if(_pullLengh > 0){
 						pullElement(_element, _pullLengh, cfg);						
 					}
 			});
