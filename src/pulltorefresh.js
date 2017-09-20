@@ -15,7 +15,6 @@
 	function preventDefault(ev) {
 	  ev.preventDefault()
 	}
-	document.addEventListener('touchmove', preventDefault, false)
 	let pullToRefresh = {
 		init: function(cfg){
 	    Object.keys(_defaults).forEach((key) => {
@@ -40,8 +39,10 @@
 			});
 			_element.addEventListener('touchmove', function(event){					
 					_pullLengh = event.touches[0].pageY - _startLength;
-					if(_pullLengh > 10 && document.body.scrollTop === 0){
+					if(_pullLengh > 10 && document.body.scrollTop === 0){ // 下拉刷新
 						pullElement(_element, _pullLengh, cfg);						
+					} else { // 正常下拉滚动
+							document.removeEventListener('touchmove', preventDefault, false)
 					}
 			});
 			_element.addEventListener('touchend', function(event){
