@@ -12,6 +12,10 @@
 	let _ptrEle = '';
 	let _ptrTextEle = '';
 	let _element = '';
+	function preventDefault(ev) {
+	  ev.preventDefault()
+	}
+	document.addEventListener('touchmove', preventDefault, false)
 	let pullToRefresh = {
 		init: function(cfg){
 	    Object.keys(_defaults).forEach((key) => {
