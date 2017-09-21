@@ -88,19 +88,19 @@ bl.addCallback(function(arg){
 </div>
 ```
 ```js
-    pullToRefresh.init({
-        // required
-        ptrElement: '#ptr-instructions', // 'pull to refresh' intructions element
-        ptrTextElement: '.ptr-instructions-text', // intructions' text element
-        targetElement: '#main', // target element that will be dragged and refreshed
-        // optional
-        instructionsPullToRefresh: 'pull to refresh', // text
-        instructionsReleaseToRefresh: 'Release to refresh', //text
-        instructionsRefreshing: 'refreshing', // text
-        threshold: 60, // minimum distance required to trigger the onPull callback
-        onPull: function(){ // callback fn
-            console.log('onPull fired');
-        }
-    });
+pullToRefresh.init({
+    // required
+    ptrElement: '#ptr-instructions', // 'pull to refresh' intructions element
+    ptrTextElement: '.ptr-instructions-text', // intructions' text element
+    targetElement: '#main', // target element that will be dragged and refreshed
+    // optional
+    instructionsPullToRefresh: 'pull to refresh', // text
+    instructionsReleaseToRefresh: 'Release to refresh', //text
+    instructionsRefreshing: 'refreshing', // text
+    threshold: 60, // minimum distance required to trigger the onPull callback
+    onPull: function(){ // callback fn
+        console.log('onPull fired');
+    }
+});
 
 ```
