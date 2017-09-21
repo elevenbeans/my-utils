@@ -63,3 +63,44 @@ bl.addCallback(function(arg){
 	immediately:true
 });
 ```
+
+### PullToRefresh
+
+```html
+<div id = "ptr-instructions">
+    <!--your loading icon here-->
+    <span class= "ptr-instructions-text"></span>
+</div>
+<div id = "main">
+    <div class = "item">1</div>
+    <div class = "item">2</div>
+    <div class = "item">3</div>
+    <div class = "item">4</div>
+    <div class = "item">5</div>
+    <div class = "item">6</div>
+    <div class = "item">7</div>
+    <div class = "item">8</div>
+    <div class = "item">9</div>
+    <div class = "item">10</div>
+    <div class = "item">11</div>
+    <div class = "item">12</div>
+    <div class = "item">13</div>
+</div>
+```
+```js
+    pullToRefresh.init({
+        // required
+        ptrElement: '#ptr-instructions', // 'pull to refresh' intructions element
+        ptrTextElement: '.ptr-instructions-text', // intructions' text element
+        targetElement: '#main', // target element that will be dragged and refreshed
+        // optional
+        instructionsPullToRefresh: 'pull to refresh', // text
+        instructionsReleaseToRefresh: 'Release to refresh', //text
+        instructionsRefreshing: 'refreshing', // text
+        threshold: 60, // minimum distance required to trigger the onPull callback
+        onPull: function(){ // callback fn
+            console.log('onPull fired');
+        }
+    });
+
+```
