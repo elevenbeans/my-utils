@@ -43,7 +43,6 @@
 			});
 			_element.addEventListener('touchend', function(event){
 				// console.log(document.body.scrollTop)
-				if(document.body.scrollTop === 0){
 					if(_pullLengh > cfg.threshold){
 						// 'refreshing'
 						_ptrTextEle.innerText = cfg.instructionsRefreshing;
@@ -52,7 +51,6 @@
 					} 
 					_element.style['transition'] = 'transform 0.6s ease';
 					_element.style['transform'] = 'translate(0, 0px)';
-				}
 			});
 		}
 	}
