@@ -42,8 +42,8 @@
 					}
 			});
 			_element.addEventListener('touchend', function(event){
-				//console.log(_element.scrollTop)
-				if(_element.scrollTop === 0){
+				// console.log(document.body.scrollTop)
+				if(document.body.scrollTop === 0){
 					if(_pullLengh > cfg.threshold){
 						// 'refreshing'
 						_ptrTextEle.innerText = cfg.instructionsRefreshing;
