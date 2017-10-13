@@ -59,8 +59,8 @@ var bl = new BottomLoader(0); //0 throttle 1 debounce
 bl.addCallback(function(arg){
 	// code here
 },{
-	diff:300,
-	immediately:true
+  diff:300,
+  immediately:true
 });
 ```
 
