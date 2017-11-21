@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Utils</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+</head>
+<body>
+	<style>
+		html, body{
+			margin: 0;
+			padding: 0;
+		}
+	</style>
+	<script type="text/javascript" src="./promise.js"></script>
+
+	<div id = "main">
+	</div>
+
+	<script>
+		function async(value) {
+		  var pms = new Promise(function(resolve, reject){
+		    setTimeout(function(){
+	        resolve(value);;
+        }, 1000);
+	    });
+	    return pms;
+		}
+		async(1).then(function(result){
+	    console.log('the result is ',result); // the result is 2 
+	    return result;
+		}).then(function(result){
+		  console.log(++result); // 2
+		});
+	</script>
+</body>
+</html>
