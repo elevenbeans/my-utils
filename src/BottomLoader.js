@@ -3,13 +3,13 @@
 **/
 
 function BottomLoader(isDebounce){
-	this.BUFF = 200;
-	this.viewportHeight = window.screen.height;
-	this.DIFF = this.viewportHeight;
-	this.cbContent = {};
-	this.count = 1;
-	this.last = 0;
-	this.init(isDebounce);
+  this.BUFF = 200;
+  this.viewportHeight = window.screen.height;
+  this.DIFF = this.viewportHeight;
+  this.cbContent = {};
+  this.count = 1;
+  this.last = 0;
+  this.init(isDebounce);
 }
 
 BottomLoader.prototype = {
@@ -19,11 +19,11 @@ BottomLoader.prototype = {
     window.addEventListener('scroll', function () {
       if(isDeb){
         if (typeof timer === 'number') {
-            clearTimeout(timer);
+          clearTimeout(timer);
         }
         timer = setTimeout(function () {
-            //添加onscroll事件处理
-            self.detect();
+          //添加onscroll事件处理
+          self.detect();
         }, self.BUFF);
       }else{
         self.throttle(200,self.detect);
@@ -31,24 +31,25 @@ BottomLoader.prototype = {
     }, false);
   },
   detect: function () {  //监测的逻辑
-  	var self = this;
+    var self = this;
     var docHeight = document.body.clientHeight;
     var scrollTop = document.body.scrollTop; //scroll distance
-    //console.log('detect');
+    // console.log('detect');
     var elBottomPos = docHeight;
-    if ((self.viewportHeight + scrollTop + cbContent.diff >= elBottomPos )&&(scrollTop + cbContent.diff <= elBottomPos )){
-      cbContent.callback && cbContent.callback(self.count);
-      console.log('Loader '+self.count+" times");
+    if ((self.viewportHeight + scrollTop + this.cbContent.diff >= elBottomPos )
+      &&(scrollTop + this.cbContent.diff <= elBottomPos )) {
+      this.cbContent.callback && this.cbContent.callback(self.count);
+      // console.log('Loader '+self.count+' times');
       self.count ++;
     }
   },
   addCallback: function (callback,config) {  //增加回调函数
     var self = this;
-    cbContent = {
+    this.cbContent = {
       diff: config.diff || self.DIFF,
       callback: callback
     };
-    if(config.immediately){
+    if(config.immediately) {
       self.detect();
     }
   },
@@ -59,6 +60,6 @@ BottomLoader.prototype = {
       // console.log('in');
       action.apply(this, arguments);
       self.last = curr ;
-    };
+    }
   }
 };

@@ -18,13 +18,15 @@
   },
   "homepage": "https://github.com/elevenBeans/MyUtils#readme",
   "devDependencies": {
-    "gulp":"*",
-    "gulp-clean": "*",
+    "eslint": "^4.16.0",
+    "eslint-plugin-react": "^7.6.1",
+    "gulp": "*",
+    "gulp-autoprefixer": "*",
     "gulp-cache": "^0.4.0",
+    "gulp-clean": "*",
+    "gulp-if": "*",
     "gulp-less": "^3.0.4",
-    "gulp-uglify":"*",
-    "gulp-autoprefixer":"*",
-    "gulp-minify-css":"*",
-    "gulp-if":"*"
+    "gulp-minify-css": "*",
+    "gulp-uglify": "*"
   }
 }

@@ -13,20 +13,19 @@
 	</style>
 	<script type="text/javascript" src="./promise.js"></script>
 
-	<div id = "main">
-	</div>
+	<div id = "main"></div>
 
 	<script>
 		function async(value) {
-		  var pms = new Promise(function(resolve, reject){
-		    setTimeout(function(){
-	        resolve(value);;
+		  var pms = new Promise(function(resolve, reject) {
+		    setTimeout(function() {
+	        resolve(value);
         }, 1000);
 	    });
 	    return pms;
 		}
 		async(1).then(function(result){
-	    console.log('the result is ',result); // the result is 2 
+	    console.log('the result is ',result);
 	    return result;
 		}).then(function(result){
 		  console.log(++result); // 2
