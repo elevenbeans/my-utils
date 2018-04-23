@@ -33,7 +33,10 @@ BottomLoader.prototype = {
   detect: function () {  //监测的逻辑
     var self = this;
     var docHeight = document.body.clientHeight;
-    var scrollTop = document.body.scrollTop; //scroll distance
+    var scrollTop = window.pageYOffset  //用于FF
+                || document.documentElement.scrollTop
+                || document.body.scrollTop
+                || 0;
     // console.log('detect');
     var elBottomPos = docHeight;
     if ((self.viewportHeight + scrollTop + this.cbContent.diff >= elBottomPos )
